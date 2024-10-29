@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS网格</title>
+
+    <style>
+        /* 网格背景样式 */
+        .grid-background {
+            width: 100vw;
+            /* 宽度设为视窗宽度 */
+            height: 100vh;
+            /* 高度设为视窗高度 */
+            background-color: white;
+            /* 背景颜色 */
+            background-image:
+                linear-gradient(to right, rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            /* 网格大小（可根据需要调整） */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="grid-background">
+        <!-- 页面内容 -->
+        <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos incidunt accusamus aliquam esse qui a sequi
+            consequuntur, nihil ratione modi quo explicabo, repellendus rerum voluptatum. Sint blanditiis magni
+            consequatur est!
+        </p>
+    </div>
+
+</body>
+
+</html>
