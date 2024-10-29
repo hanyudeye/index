@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音乐一首</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+
+        .player-container {
+            text-align: center;
+        }
+
+        audio {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="player-container">
+        <h1>音乐播放器</h1>
+        <button id="load-music">加载音乐</button>
+        <div id="audio-container"></div>
+    </div>
+
+    <script>
+        document.getElementById('load-music').addEventListener('click', function () {
+            // 全民K歌 url
+            //https://api.uomg.com/api/get.kg?songurl=https://node.kg.qq.com/play?s=YaCv8EYfJunVWYcH
+            // const apiURL = 'https://example.com/api/music';
+            const apiURL = 'https://api.uomg.com/api/get.kg?songurl=https://node.kg.qq.com/play?s=YaCv8EYfJunVWYcH';
+
+            // 使用 Fetch API 获取音乐URL
+            fetch(apiURL)
+                .then(response => response.json()) // 解析返回的 JSON
+                .then(data => {
+                    // 假设 JSON 返回的数据结构为 { "url": "音乐文件URL" }
+                    // const musicURL = data.url;
+                    const musicURL = data.data.playurl;
+                    const coverURL = data.data.pic;
+
+                    // 创建音频播放器元素
+                    const audioContainer = document.getElementById('audio-container');
+                    audioContainer.innerHTML = ''; // 清空之前的内容
+
+                    // 创建封面图片
+                    const coverImage = document.createElement('img');
+                    coverImage.src = coverURL;
+                    coverImage.alt = "音乐封面";
+                    coverImage.className = "cover";
+
+                    const audioElement = document.createElement('audio');
+                    audioElement.controls = true; // 显示播放控制
+                    audioElement.src = musicURL; // 设置音乐URL
+                    audioElement.autoplay = true; // 自动播放音乐
+
+                        // 将封面图片和音频播放器添加到页面
+                        audioContainer.appendChild(coverImage);
+                    audioContainer.appendChild(audioElement);
+                })
+                .catch(error => {
+                    console.error('获取音乐时出错:', error);
+                    alert('音乐加载失败，请稍后重试。');
+                });
+        });
+    </script>
+
+</body>
+
+</html>
